@@ -1,9 +1,9 @@
 ubject('LP','Логическое программирование').
-subject('MTH','Математика').
+subject('MTH','Математический Анализ').
 subject('FP','Функциональное программирование').
 subject('INF','Информатика').
 subject('ENG','Английский язык').
-subject('PSY','Физика').
+subject('PSY','Психология').
 student(102,'Петрин',[grade('LP',3),grade('MTH',4),grade('FP',4),grade('INF',4),grade('ENG',5),grade('PSY',4)]).
 student(101,'Сазонов',[grade('LP',5),grade('MTH',4),grade('FP',3),grade('INF',4),grade('ENG',2),grade('PSY',4)]).
 student(104,'Купцов',[grade('LP',4),grade('MTH',5),grade('FP',5),grade('INF',4),grade('ENG',3),grade('PSY',3)]).
