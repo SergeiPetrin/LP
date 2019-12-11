@@ -52,10 +52,10 @@ for line in kek.readlines():
         if r1 == "SEX":
             if r2[:-1] == "F":
                 r = "sex(%r, 'f').\n" % (name[:-1] + " " + surn[:-1])
-                lol.write(r)
+                my_output.write(r)
 
             if r2[:-1] == "M":
                 r = "sex(%r, 'm').\n" % (name[:-1] + " " + surn[:-1])
-                lol.write(r)     
+                my_output.write(r)     
 my_input.close()
 my_output.close()
