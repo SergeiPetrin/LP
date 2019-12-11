@@ -1,5 +1,5 @@
-my_input = open("derevo.ged", "r")
-my_output = open("output.pl", "w")
+my_input = open("petrinTree.ged", "r")
+my_output = open("petrinTree.pl", "w")
 
 base = {}
 
