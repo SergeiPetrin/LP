@@ -47,7 +47,7 @@ for line in kek.readlines():
                     child = a + " " + b
                     
             r = "parents(%r, %r, %r).\n" % (child, father, mother)
-            lol.write(r)
+            my_output.write(r)
 
         if r1 == "SEX":
             if r2[:-1] == "F":
