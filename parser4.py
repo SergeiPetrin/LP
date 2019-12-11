@@ -3,7 +3,7 @@ my_output = open("output.pl", "w")
 
 base = {}
 
-for line in kek.readlines():
+for line in my_input.readlines():
     words = line.split(" ")
     
     if len(words) >= 3:
