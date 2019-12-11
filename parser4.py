@@ -1,5 +1,5 @@
-kek = open("derevo.ged", "r")
-lol = open("output.pl", "w")
+my_input = open("derevo.ged", "r")
+my_output = open("output.pl", "w")
 
 base = {}
 
@@ -51,11 +51,11 @@ for line in kek.readlines():
 
         if r1 == "SEX":
             if r2[:-1] == "F":
-                r = "female(%r).\n" % (name[:-1] + " " + surn[:-1])
+                r = "sex(%r, 'f').\n" % (name[:-1] + " " + surn[:-1])
                 lol.write(r)
 
             if r2[:-1] == "M":
-                r = "male(%r).\n" % (name[:-1] + " " + surn[:-1])
+                r = "sex(%r, 'm').\n" % (name[:-1] + " " + surn[:-1])
                 lol.write(r)     
-lol.close()
-kek.close()
+my_input.close()
+my_output.close()
