@@ -40,13 +40,13 @@ my_pred([H|T],KS1):-my_pred(T,U),findall(K1,(parents(K1,H,_)->sex(K1,Sex) -> Sex
                                     findall(K2,(parents(K2,_,H)->sex(K2,Sex) -> Sex == 'm'),KS2),
                                                                              append(KS1,KS2,KS), append(KS,U,KS1).
 
-dbro(X,S):- parents(X,F,M),parents(F,FF,FM), parents(M,MF,MM),
+solve(X,S):- parents(X,F,M),parents(F,FF,FM), parents(M,MF,MM),
     findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,KS),
     findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1, delete(M,MX,MX1), my_pred(MX1,LS),
     append(KS,LS,S), write(S), nl.
 
-dbro(X,S):- parents(X,F,_), parents(F,FF,FM),
+solve(X,S):- parents(X,F,_), parents(F,FF,FM),
     findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,S), write(S), nl.
 
-dbro(X,S):-parents(X,_,M),parents(M,MF,MM),
+solve(X,S):-parents(X,_,M),parents(M,MF,MM),
     findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1,delete(M,MX,MX1), my_pred(MX1,S), write(S), nl.
