@@ -51,11 +51,11 @@ for line in my_input.readlines():
 
         if r1 == "SEX":
             if r2[:-1] == "F":
-                r = "sex(%r, 'f').\n" % (name[:-1] + " " + surn[:-1])
+                r = "sex('%r', 'f').\n" % (name[:-1] + " " + surn[:-1])
                 my_output.write(r)
 
             if r2[:-1] == "M":
-                r = "sex(%r, 'm').\n" % (name[:-1] + " " + surn[:-1])
+                r = "sex('%r', 'm').\n" % (name[:-1] + " " + surn[:-1])
                 my_output.write(r)     
 my_input.close()
 my_output.close()
