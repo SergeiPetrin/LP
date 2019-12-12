@@ -36,26 +36,27 @@
 Пройдёмся по программе:
 
 ```prolog
-delete( X, [X|T], T).
-delete( X, [H|T], [H | T1] ) :-
-delete( X, T, T1).
+solve(X,S):- parents(X,F,M),parents(F,FF,FM), parents(M,MF,MM),
+    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, del(F,FX,FX1), my_pred(FX1,KS),
+    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1, del(M,MX,MX1), my_pred(MX1,LS),
+    append(KS,LS,S), write(S), nl.
 
+solve(X,S):- parents(X,F,_), parents(F,FF,FM),
+    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, del(F,FX,FX1), my_pred(FX1,S), write(S), nl.
+
+solve(X,S):-parents(X,_,M),parents(M,MF,MM),
+    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1,del(M,MX,MX1), my_pred(MX1,S), write(S), nl.
+```
+
+Предикат solve ищет/проверяет двоюродного брата. Как он работает? Очень просто. Допустим X - это вы. Сначала он находит ваших родителей, потом родителей ваших родителей - дедушек и бабушек, тоесть их 4, родители мамы и родители папы. Дальше с помощью предиката findall мы находим детей ваших дедушек и бабушек, проверяем, что такие существуют (иначе выдаём false.), удаляем вашего отца, мать из этого списка (иначе вы будете двоюродным братом самому себе), и находим детей ваших дядь и тёть с помощью предиката my_pred.
+
+```prolog
 my_pred([],[]).
 my_pred([H|T],KS1):-my_pred(T,U),findall(K1,(parents(K1,H,_)->sex(K1,Sex) -> Sex == 'm'),KS1),
                                     findall(K2,(parents(K2,_,H)->sex(K2,Sex) -> Sex == 'm'),KS2),
                                                                              append(KS1,KS2,KS), append(KS,U,KS1).
-
-solve(X,S):- parents(X,F,M),parents(F,FF,FM), parents(M,MF,MM),
-    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,KS),
-    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1, delete(M,MX,MX1), my_pred(MX1,LS),
-    append(KS,LS,S), write(S), nl.
-
-solve(X,S):- parents(X,F,_), parents(F,FF,FM),
-    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,S), write(S), nl.
-
-solve(X,S):-parents(X,_,M),parents(M,MF,MM),
-    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1,delete(M,MX,MX1), my_pred(MX1,S), write(S), nl.
 ```
+С помощью рекурсии находим детей дядь и тёть. Важно заметить, что мы находим детей мужского пола, потому что мы ищем двоюродных братьев, а не сестёр. 
 
 ## Выводы
 
