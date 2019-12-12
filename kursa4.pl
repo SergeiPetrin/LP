@@ -31,9 +31,9 @@ parents('Василий Голев', 'Михаил Голев', 'Анна Пет
 parents('Санчоус ТотСамый', 'Николай Толстой', 'Лень Придумывать').
 parents('Кристина ТотСамый', 'Николай Толстой', 'Лень Придумывать').
 
-delete( X, [X|T], T).
-delete( X, [H|T], [H | T1] ) :-
-delete( X, T, T1).
+del( X, [X|T], T).
+del( X, [H|T], [H | T1] ) :-
+del( X, T, T1).
 
 my_pred([],[]).
 my_pred([H|T],KS1):-my_pred(T,U),findall(K1,(parents(K1,H,_)->sex(K1,Sex) -> Sex == 'm'),KS1),
@@ -41,12 +41,12 @@ my_pred([H|T],KS1):-my_pred(T,U),findall(K1,(parents(K1,H,_)->sex(K1,Sex) -> Sex
                                                                              append(KS1,KS2,KS), append(KS,U,KS1).
 
 solve(X,S):- parents(X,F,M),parents(F,FF,FM), parents(M,MF,MM),
-    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,KS),
-    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1, delete(M,MX,MX1), my_pred(MX1,LS),
+    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, del(F,FX,FX1), my_pred(FX1,KS),
+    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1, del(M,MX,MX1), my_pred(MX1,LS),
     append(KS,LS,S), write(S), nl.
 
 solve(X,S):- parents(X,F,_), parents(F,FF,FM),
-    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, delete(F,FX,FX1), my_pred(FX1,S), write(S), nl.
+    findall(T, parents(T,FF,FM),FX), length(FX,FN), FN > 1, del(F,FX,FX1), my_pred(FX1,S), write(S), nl.
 
 solve(X,S):-parents(X,_,M),parents(M,MF,MM),
-    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1,delete(M,MX,MX1), my_pred(MX1,S), write(S), nl.
+    findall(T, parents(T,MF,MM),MX), length(MX,MN), MN > 1,del(M,MX,MX1), my_pred(MX1,S), write(S), nl.
